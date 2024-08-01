@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter Page</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .counter {
+            font-size: 5em;
+            margin-top: 50px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        .qrcode, .image {
+            margin-top: 20px;
+        }
+        .qrcode img, .image img {
+            width: 150px;
+            height: 150px;
+        }
+        .image img {
+            width: auto; /* Make sure the image scales properly */
+            height: auto; /* Preserve aspect ratio */
+        }
+    </style>
+</head>
+<body>
+    <div class="counter">
+        <span id="counterValue">006523</span>
+    </div>
+    <div class="qrcode">
+        <a href="https://www.instagram.com/eldan_group/" target="_blank">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://www.instagram.com/eldan_group/" alt="QR Code">
+        </a>
+    </div>
+    <div class="image">
+        <!-- Replace this URL with the direct URL to your image -->
+        <img src="https://www.anvilmediainc.com/wp-content/uploads/2022/03/Picture2.png" alt="Additional Image">
+    </div>
+    <script>
+        let counterValue = 6523;
+        function updateCounter() {
+            // Increase the counter value
+            counterValue += Math.floor(Math.random() * 10) + 1; // Increment by a random value between 1 and 10
+            // Format the number to include leading zeros
+            document.getElementById('counterValue').textContent = counterValue.toString().padStart(6, '0');
+            
+            // Set a random time interval between updates
+            let randomInterval = Math.floor(Math.random() * 2000) + 1000; // Between 1 and 3 seconds
+            setTimeout(updateCounter, randomInterval);
+        }
+        updateCounter(); // Start the counter
+    </script>
+</body>
+</html>
