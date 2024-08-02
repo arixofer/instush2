@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter Page</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .screen {
+            text-align: center;
+            padding: 20px;
+        }
+        .image img, .extra-image img {
+            max-width: 900px; /* Limit the width to 900 pixels */
+            height: auto; /* Preserve aspect ratio */
+        }
+        .counter {
+            font-family: 'Press Start 2P', cursive; /* Digital-style font */
+            font-size: 6em; /* Increased size */
+            color: yellow; /* Yellow color */
+            font-weight: normal; /* Not bold */
+            margin-top: 50px;
+        }
+        .qrcode {
+            margin-top: 50px; /* Add 50 pixels space above the QR code */
+        }
+        .qrcode img {
+            width: 150px;
+            height: 150px;
+        }
+        .banner {
+            font-size: 2em;
+            margin-top: 20px;
+        }
+        .upload {
+            margin-top: 20px;
+        }
+        .upload input {
+            margin-top: 10px;
+        }
+        .button {
+            background-color: #007bff;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="screen">
+        <div class="image">
+            <!-- Image above the counter -->
+            <img src="URL_TO_YOUR_IMAGE" alt="Top Image">
+        </div>
+        <div class="counter">
+            <span id="counterValue">006523</span>
+        </div>
+        <div class="qrcode">
+            <a href="https://www.instagram.com/eldan_group/" target="_blank">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://www.instagram.com/eldan_group/" alt="QR Code">
+            </a>
+        </div>
+        <div class="extra-image">
+            <!-- Display the additional image here -->
+            <img src="https://www.anvilmediainc.com/wp-content/uploads/2022/03/Picture2.png" alt="Additional Image">
+        </div>
+    </div>
+
+    <script>
+        function handleFileUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('uploadedImage').src = e.target.result;
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+
+        let counterValue = 6523;
+        function updateCounter() {
+            // Increase the counter value
+            counterValue += Math.floor(Math.random() * 10) + 1; // Increment by a random value between 1 and 10
+            // Format the number to include leading zeros
+            document.getElementById('counterValue').textContent = counterValue.toString().padStart(6, '0');
+            
+            // Set a random time interval between updates
+            let randomInterval = Math.floor(Math.random() * 2000) + 1000; // Between 1 and 3 seconds
+            setTimeout(updateCounter, randomInterval);
+        }
+        updateCounter(); // Start the counter
+    </script>
+</body>
+</html>
